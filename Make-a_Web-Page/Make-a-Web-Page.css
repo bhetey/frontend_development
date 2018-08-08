@@ -1,0 +1,66 @@
+body {
+	background-color: #c0c0c0;
+	font-family: Verdana, sans-serif,Arial;
+}
+
+nav {
+	list-style: none;
+	margin: 0px;
+	overflow: hidden;
+	background-color: black;
+}
+
+.navigationholder a{
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+.navigationholder li{
+	float: right;
+}
+/* this is for the hover you see, you are howering over a link */
+li a:hover {
+	background-color: blue;
+}
+
+.bar-nav {
+	padding: 8px;
+	border: none;
+	outline: none;
+	display: block;
+}
+/* Text are aligned to center with a maroon color*/
+.text-align-center {
+	text-align: center;
+	color: maroon;
+}
+
+.list-central {
+	text-align: center;
+	list-style-position: inside;
+}
+
+footer {
+	position: relative;
+	text-align: center;
+	bottom: -350px;
+}
+
+img.dami-photo {
+	margin: 20px;
+	max-width: 400px;
+	width: 400px;
+	height: 500px;
+	float: left;
+}
+
+#information-about-me{
+	float: none;
+}
