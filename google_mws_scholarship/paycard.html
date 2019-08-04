@@ -140,6 +140,134 @@
       visa,
       mastercard
     };
+
+
+    // testing script 
+    const formatAsMoney = (amount, buyerCountry) => {
+      countries.forEach((entry) => {
+        if (buyerCountry === entry.country) {
+          country = entry.country;
+          currency = entry.currency;
+          code = entry.code;
+        }
+      });
+      console.log(amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+      return amount.toLocaleString('en' + code, { style: 'currency', currency: currency })
+      return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    };
+
+
+    const formatAsMoney = (amount, buyerCountry) => {
+      let findCountry = countries.find(countries => countries.country == buyerCountry);
+      if (findCountry)
+        return amount.toLocaleString("en-US", { style: "currency", currency: "UGX" })
+      return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }
+
+    const flagIfInvalid = (field, isValid) => {
+      if (isValid == true) {
+        field.classList.remove('is-invalid')
+      } else {
+        field.classList.add('is-invalid')
+      }
+    }
+
+    const expiryDateFormatIsValid = (field) => {
+      const regex = /^(\d){2}\/(\d){2}$/;
+
+
+      return field.value.match(regex)
+    }
+
+    const detectCardType = (first4Digits) => {
+
+    }
+
+    // validateCardExpiryDate
+    const validateCardExpiryDate = (field) => {
+      field = document.querySelector('[data-cc-info] input:nth-child(2)');
+      if (expiryDateFormatIsValid(field)) {
+        const [month, year] = field.value.split('/');
+        const expiryDate = new Date(`20${year}/${month}`);
+        const now = new Date();
+
+        if (expiryDate > now) {
+          flagIfInvalid(field, true)
+          return true;
+        } else {
+          flagIfInvalid(field, false)
+          return false;
+        }
+      } else {
+        flagIfInvalid(field, false)
+        return false;
+      }
+    }
+
+    const validateCardHolderName = ({ field }) => {
+      field = document.querySelector("[data-cc-info] input:nth-child(1)");
+      let customerName = field.value;
+
+      if (customerName && customerName.match(/^[A-Z][a-z]+\s[A-Z][a-z]+$/)) {
+        flagIfInvalid(field, true);
+        return true
+      } else {
+        flagIfInvalid(field, false);
+        return false
+      }
+    }
+    const validateCardNumber = () => {
+
+    }
+
+    const validatePayment = () => {
+      validateCardNumber();
+      validateCardHolderName();
+      validateCardExpiryDate();
+    }
+
+
+    const acceptCardNumbers = (event, fieldIndex) => {
+
+    }
+
+    const smartInput = (event, fieldIndex) => {
+
+    }
+
+    const uiCanInteract = () => {
+      document.querySelector('[data-cc-onfo]').focus();
+      document.querySelector('[data-pay-btn]').addEventListener('click', validatePayment);
+      billHype();
+    }
+
+    const displayCartTotal = ({ results }) => {
+      let [data] = results;
+      let { itemsInCart, buyerCountry } = data;
+      appState.items = itemsInCart;
+      appState.country = buyerCountry;
+
+      appState.bill = itemsInCart.reduce((acc, currentItem) => {
+        return acc + (currentItem.price * currentItem.qty);
+      }, 0)
+
+      appState.billFormatted = formatAsMoney(appState.bill, appState.country);
+      document.querySelector("[data-bill]").textContent = appState.billFormatted;
+      appState.cardDigits = [];
+      uiCanInteract();
+    }
+    const fetchBill = () => {
+      const apiHost = 'https://randomapi.com/api';
+      const apiKey = '006b08a801d82d0c9824dcfdfdfa3b3c';
+      const apiEndpoint = `${apiHost}/${apiKey}`;
+
+      fetch(apiEndpoint)
+        .then(response => response.json())
+        .then(data => displayCartTotal(data))
+        .catch(error => console.log('Error'))
+    };
+
+    // testing script ends. 
     fetch('./api/some.json')
       .then(
         function (response) {
@@ -159,68 +287,88 @@
         console.log('Fetch Error :-S', err);
       });
 
-    // fetchBill
-    const fetchBill = () => {
-      const apiHost = 'https://randomapi.com/api';
-      const apiKey = '006b08a801d82d0c9824dcfdfdfa3b3c';
-      const apiEndpoint = `${apiHost}/${apiKey}`;
-      fetch(apiEndpoint)
-        .then(response => response.json)
-        .then(data => displayCartTotal(data))
-        .catch(error => console.error(error));
-    };
-    const countries = [
-      {
-        code: "US",
-        currency: "USD",
-        country: "United States"
-      },
-      {
-        code: "NG",
-        currency: "NGN",
-        country: "Nigeria"
-      },
-      {
-        code: "KE",
-        currency: "KES",
-        country: "Kenya"
-      },
-      {
-        code: "UG",
-        currency: "UGX",
-        country: "Uganda"
-      },
-      {
-        code: "RW",
-        currency: "RWF",
-        country: "Rwanda"
-      },
+    //  (0[1-9]|10|11|12)/20[0-9]{2}$
+    const expiryDateFormatIsValid = field => {
+      return /^(((0|)[0-9])|((1)[0-2]))(\/)\d{2}$/.test(field);
+      return /^(((0|)[0-9])|((1)[0-2]))(\/)\d{2}$/.test(field);
 
-      {
-        code: "TZ",
-        currency: "TZS",
-        country: "Tanzania"
-      },
-      {
-        code: "ZA",
-        currency: "ZAR",
-        country: "South Africa"
-      },
-      {
-        code: "CM",
-        currency: "XAF",
-        country: "Cameroon"
-      },
-      {
-        code: "GH",
-        currency: "GHS",
-        country: "Ghana"
+
+      const expiryDateFormatIsValid = (field) => {
+        var regexValidate = "(0[1-9]|10|11|12)/20[0-9]{2}$";
+        if (regexValidate.test(field)) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      };
+
+      const expiryDateFormatIsValid = (field) => {
+        return /^([0-9]{2})\/([0-9]{2}$)/.test(field.value);
       }
-    ];
 
-    const startApp = () => { };
+      // fetchBill
+      const fetchBill = () => {
+        const apiHost = 'https://randomapi.com/api';
+        const apiKey = '006b08a801d82d0c9824dcfdfdfa3b3c';
+        const apiEndpoint = `${apiHost}/${apiKey}`;
+        fetch(apiEndpoint)
+          .then(response => response.json)
+          .then(data => displayCartTotal(data))
+          .catch(error => console.error(error));
+      };
+      const countries = [
+        {
+          code: "US",
+          currency: "USD",
+          country: "United States"
+        },
+        {
+          code: "NG",
+          currency: "NGN",
+          country: "Nigeria"
+        },
+        {
+          code: "KE",
+          currency: "KES",
+          country: "Kenya"
+        },
+        {
+          code: "UG",
+          currency: "UGX",
+          country: "Uganda"
+        },
+        {
+          code: "RW",
+          currency: "RWF",
+          country: "Rwanda"
+        },
 
-    startApp();
+        {
+          code: "TZ",
+          currency: "TZS",
+          country: "Tanzania"
+        },
+        {
+          code: "ZA",
+          currency: "ZAR",
+          country: "South Africa"
+        },
+        {
+          code: "CM",
+          currency: "XAF",
+          country: "Cameroon"
+        },
+        {
+          code: "GH",
+          currency: "GHS",
+          country: "Ghana"
+        }
+      ];
+
+      const startApp = () => { };
+
+      startApp();
   </script>
 </body>
 
