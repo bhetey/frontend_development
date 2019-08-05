@@ -260,12 +260,35 @@
             let fValue = field.value.replace(/\s/g, '');
             const dFormat = /^([1-9]|1[0-2])\/(\d\d)$/;
             return dFormat.test(fValue) ? true : false;
-            //return /^(\d){1,2}\/(\d){2}$/.test(field);
-
-            //return /^([1-9]|1[0-2])\/(\d\d)$/.test(field);
         };
 
         const detectCardType = (first4Digits) => { };
+
+        const smartCursor = (event, fieldIndex, fields) => {
+            console.log('Fields : ', fields);
+            console.log('Field index : ', fields[fieldIndex].size);
+            console.log('Value : ', fields[fieldIndex].value)
+
+            if (fields[fieldIndex].size == fields[fieldIndex].value.length && fieldIndex < fields.length) {
+                fields[fieldIndex + 1].focus();
+                console.log('You have the length : ', fields.length)
+                console.log('Moved to : ' + fields[fieldIndex + 1]);
+            }
+        };
+
+        const enableSmartyping = () => {
+            const allInputs = document.querySelectorAll('[data-cc-digits] input');
+            let inputArray = [...allInputs];
+            console.log('Input arrays are : ' + inputArray)
+            inputArray.forEach((field, index, fields) => {
+                field.addEventListener('keyup', event => {
+                    smartCursor(event, index, fields);
+                });
+                field.addEventListener('keydown', event => {
+                    smartInput(event, index);
+                })
+            })
+        };
 
         const validateCardExpiryDate = () => {
             const field = document.querySelector('[data-cc-info] input:nth-child(2)');
@@ -324,6 +347,7 @@
             document.querySelector('[data-cc-digits] input:nth-child(1)').focus();
             document.querySelector('[data-pay-btn]').addEventListener('click', validatePayment);
             billHype();
+            enableSmartyping();
         };
 
         const fetchBill = () => {
