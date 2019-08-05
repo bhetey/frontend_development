@@ -97,3 +97,101 @@
 
 - [x] Now to the `validateCardHolderName` function. Recall that its placeholder already suggests the required format, which is Name Surname (2 names separated by space). Each name should be at least 3 characters long. It should use the `flagIfInvalid` function to mark the field as valid or not and then return true or false depending on if the validation requirements are met or not.
 
+Validate Payment Details
+To have gotten here, you learnt a lot and demosntrated very good grasp of Web technologies. Respect!
+
+
+
+This is where it gets even more interesting. This challenge will push you, but we believe you have built the muscle for it. We hope you will find this last challenge inspiring, thought provoking, ambitious but solvable.
+
+When all four numbered buttons on the left of the screen get ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
+
+Step 1
+Create a smartCursor function with event, fieldIndex, and fields as parameters. If you already created a typeAhead function, rename it to smartCursor.
+
+Create a enableSmartTyping function. No parameters are required.
+
+At the end of the uiCanInteract function, call the enableSmartTyping function.
+
+Step 2
+The enableSmartTyping function should collect all the input fields into an array and use .forEach to iterate over them with an inline arrow function that takes field, index, and fields as parameters.
+The goal is to iteratively set keyup and keydown event listeners for each field in the collection.
+
+On each field in the iteration with .forEach:
+
+add a keyup listener with an inline arrow function that takes in an event parameter. The function should call smartCursor passing it the event object as event, the index of the given field as index, and the collection of the input fields as fields.
+
+add a keydown listener with an inline arrow function that takes in an event parameter. The function should call smartInput, passing it the event object as event, and the index of the given field as index.
+
+Step 3
+You are going to implement a smart type-ahead system with smartCursor. The input fileds in the app all have designated sizes, e.g all the credit card number fields have their size set to 4. Once a user has typed up to the size of such a field, input focus should move to the next field. How sweet!
+
+As the user types into the input fields in the app, our keyup event listener is invoked and it calls smartCursor. Depending on what was set as the size attribute for the given field, the smartCursor function should determine if the last entry has been recorded and if so, it should give input focus to the next field in the sequence. We want to be smart about this, such that the last field is not trying to set focus on a non-existent field after it. Note that smartCursor has the following parameters :
+event - a keyup event that is fired as the user types into input fields
+fieldIndex - from the collection of input fields in the app, this is the zero-based index of the field trigeering the event.
+fields - the collection of input fields in the app
+Step 4
+You are going to implement a smarter and more secure credit card number input system with smartInput. Ideally, the user's credit card number should not be displayed in the open on the app. Just like password fields in forms, newly typed digits should only be displayed temporarily (for half a second) as the user types them. Only the last 4 digits are displayed perpertually. How sweet!
+
+As the user types into the card number input fields, our keydown event listener is invoked and it calls smartInput with these parameters: * event - a keydown event that is fired as the user types into input fields * fieldIndex - from the collection of input fields, this is the zero-based index of the field trigeering the event.
+
+Implement smartInput as below :
+
+Invalid entries (non-integers) in the four card number fields should not be allowed to display at all. Hint: investigate preventDefault(). Every valid new entry should only be displayed for half a second, after which the character should be masked to conceal it from prying eyes. You can mask characters with #, $, or %.
+
+Since you will need the actual values the user entered (not the masked one in the UI), they should be saved as integer arrays in the right slot in the appState.cardDigits array. This means appState.cardDigits will be an array of arrays, corresponding to the values from the four card number fields. E.g appState.cardDigits[1] should be an array of the integers entered as value for the second card number field.
+
+Your smartInput will need to be smart enough to tell when it is handling the credit card fields vs the card holder's name field vs the expiry date field so that it can allow the correct types of input
+
+Step 5
+The detectCardType function displays a Visa or MasterCard logo depending on the card number entered by the user. For simplicity sake, our Visa card numbers begin with 4 and MasterCard numbers begin with 5. These are the only supported credit cards in the SmartPay platform
+
+If detectCardType detects a Visa card, it should add is-visa to the data-credit-card DIV, else it should remove it and add is-mastercard if it detects a MasterCard. This gives the card a somewhat branded feel. To display the right card logo, it should set the source of the data-card-type IMAGE using the data URLs provided in the supportedCards object. Finally, it needs to return the is-visa or is-mastercard value depending on the type of card detected.
+
+Call detectCardType within smartInput. You can decide what the appropriate call location should be, but ideally you want this to be :
+
+after you are sure the new entry is valid
+only when the user is editing the first credit card input field
+within the same routine that is delayed for half a second to mask inputs
+Step 6
+You will be implementing the The Luhn Algorithm to validate 16-digit credit card numbers (See here for more details, but follow the instructions below for more clarity and simplicity.
+
+Given a series of up to 16 digits, from the right to left, double every other digit starting with the second to last digit:
+
+1714
+=> [1*, 7, 1*, 4]
+=> [2, 7, 2, 4]
+If a resulting doubled number is greater than 9, replace it with either the sum of its own digits, or 9 subtracted from it.
+
+[8, 18*, 1] 
+=> [8, (1+8), 1]
+OR
+=> [8, (18-9), 1]
+Resulting in:
+=> [8, 9, 1]
+Sum all of the final digits:
+
+[8, 9, 1] 
+=> 8+9+1 
+=> 18
+Finally, take that sum and divide it by 10. If there is no remainder, the original credit card number is valid, else it is not valid.
+
+Sample valid card numbers for your tests:
+
+4556372551434601
+4916337563926287
+4716361721613449
+
+5130752529459529
+5250457226640843
+5330664490375584
+Create a validateWithLuhn function above the validateCardNumber function. It should take a digits parameter which will represent the credit card numbers as an array of integers. It should return true or false depending on if the digits represent a valid credit card number or not.
+
+Implement the validateCardNumber function to validate the card numbers entered by the user. It delegates to the validateWithLuhn function for the actual validation and returns the true or false value it gets from validateWithLuhn. Before returning the outcome of the validation, it should also add or remove the is-invalid class to the data-cc-digits DIV depending on the validity of the card number.
+
+Recall that validateWithLuhn expects to be called with an array of integers, but we have an array of integer arrays in appState.cardDigits. Use the new .flat() array function to ensure you are giving `` what it needs to do its job. See flat/flatMap
+
+If you have followed closely and implemented the requirements up to ths point, your SmartPay app should be fully functional now. Try entering valid / invalid values into the input fields in the UI and click the Pay Now BUTTON. How smart is your SmartPay afterall?
+
+If all four numbered buttons on the left of the screen are ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
+
