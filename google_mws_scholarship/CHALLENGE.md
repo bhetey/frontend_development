@@ -97,6 +97,7 @@
 
 - [x] Now to the `validateCardHolderName` function. Recall that its placeholder already suggests the required format, which is Name Surname (2 names separated by space). Each name should be at least 3 characters long. It should use the `flagIfInvalid` function to mark the field as valid or not and then return true or false depending on if the validation requirements are met or not.
 
+## Stage 4 
 Validate Payment Details
 To have gotten here, you learnt a lot and demosntrated very good grasp of Web technologies. Respect!
 
@@ -106,14 +107,14 @@ This is where it gets even more interesting. This challenge will push you, but w
 
 When all four numbered buttons on the left of the screen get ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
 
-Step 1
+### Step 1
 Create a smartCursor function with event, fieldIndex, and fields as parameters. If you already created a typeAhead function, rename it to smartCursor.
 
 Create a enableSmartTyping function. No parameters are required.
 
 At the end of the uiCanInteract function, call the enableSmartTyping function.
 
-Step 2
+### Step 2
 The enableSmartTyping function should collect all the input fields into an array and use .forEach to iterate over them with an inline arrow function that takes field, index, and fields as parameters.
 The goal is to iteratively set keyup and keydown event listeners for each field in the collection.
 

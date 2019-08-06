@@ -183,6 +183,55 @@
 
     }
 
+    const enableSmartTyping = () => {
+      const inputValues = document.querySelectorAll('[data-cc-digits] input');
+      const arr = [...inputValues];
+      arr.forEach((field, index, fields) => {
+        field.addEventListener('keyup', event => {
+          smartCursor(event, index, fields);
+        });
+        field.addEventListener('keydown', event => {
+          smartInput(event, index);
+        })
+      })
+    };
+    const smartInput = (event, fieldIndex) => {
+      const inputs = document.querySelectorAll("input");
+      const input = inputs[fieldIndex];
+      const inputValue = inputs[fieldIndex].value;
+      let asterix = "";
+      console.log(values ${ inputValue });
+      if (fieldIndex < 3) {
+        if (fieldIndex == 0) {
+          detectCardType(inputValue);
+        }
+        for (v of input.value) {
+          asterix += "#";
+        }
+        console.log(f - index ${ fieldIndex });
+        setTimeout(() => {
+          input.value = asterix;
+        }, 500);
+      }
+    };
+
+    const smartCursor = (event, fieldIndex, fields) => {
+      console.log('Fields : ', fields);
+      console.log('Field index : ', fields[fieldIndex].size);
+      console.log('Value : ', fields[fieldIndex].value)
+
+      if (fields[fieldIndex].size == fields[fieldIndex].value.length &&) {
+        fields[fieldIndex + 1].focus();
+        if (fields[fieldIndex + 1] == fields.length) {
+          console.log('Changing focus');
+          document.querySelector('[data-cc-info] input:nth-child(1)').focus();
+
+        }
+        console.log('You have the length : ', fields.length)
+        console.log('Moved to : ' + fields[fieldIndex + 1]);
+      }
+    };
+
     // validateCardExpiryDate
     const validateCardExpiryDate = (field) => {
       field = document.querySelector('[data-cc-info] input:nth-child(2)');
