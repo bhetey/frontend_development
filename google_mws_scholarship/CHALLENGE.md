@@ -1,5 +1,7 @@
-# SmartPay 
-## Build & Style The UI : Challenge 1 of 4 
+# SmartPay
+
+## Build & Style The UI : Challenge 1 of 4
+
 ### Step 1
 
 - [x] Style the BODY element with a white background color.
@@ -8,11 +10,11 @@
 
 - [x] The HEADING element should have 2 SPAN children elements. The First SPAN element displays a shopping cart by setting it's CSS class to material-icons and its content to shopping_cart. The second SPAN element should have a data-bill attribute and will be used to display the total figure the user is trying to pay on the app.
 
-- [x] Create another DIV just after the data-cart-info DIV. Give this new DIV a data-credit-card attribute and set its class to mdc-card and mdc-card--outlined . Within the data-credit-card DIV you just created, add a new DIV with a class of mdc-card__primary-action. These elements will be styled with the look and feel of an actual credit card. Brace yourself!
+- [x] Create another DIV just after the data-cart-info DIV. Give this new DIV a data-credit-card attribute and set its class to mdc-card and mdc-card--outlined . Within the data-credit-card DIV you just created, add a new DIV with a class of mdc-card\_\_primary-action. These elements will be styled with the look and feel of an actual credit card. Brace yourself!
 
-- [x] Within the .mdc-card__primary-action DIV, create an IMAGE with an attribute of data-card-type and set its source to [https://placehold.it/120x60.png?text=Card](https://placehold.it/120x60.png?text=Card). This IMAGE will be used to display the credit card type (Visa or MasterCard), based on the series of numbers entered by the user.
+- [x] Within the .mdc-card\_\_primary-action DIV, create an IMAGE with an attribute of data-card-type and set its source to [https://placehold.it/120x60.png?text=Card](https://placehold.it/120x60.png?text=Card). This IMAGE will be used to display the credit card type (Visa or MasterCard), based on the series of numbers entered by the user.
 
-- [x] Right after the IMAGE and still within the mdc-card__primary-action DIV, create a new DIV with an attribute of data-cc-digits. It should contain four INPUT text fields, each with a size of 4 and a placeholder of ---- (4 dashes). These fields will be used to collect the credit card numbers from the user.
+- [x] Right after the IMAGE and still within the mdc-card\_\_primary-action DIV, create a new DIV with an attribute of data-cc-digits. It should contain four INPUT text fields, each with a size of 4 and a placeholder of ---- (4 dashes). These fields will be used to collect the credit card numbers from the user.
 
 - [x] Create a DIV with an attribute of data-cc-info as a sibling to the data-cc-digits DIV. This new DIV should have two INPUT text fields, one for entering the card holder's name while the other will be for the card's expiry date. The first field should have a size of 20 and a placeholder of Name Surname. The expiry date field should have a size of 6 and a placeholder of MM/YY - indicating the expiry date format.
 
@@ -42,11 +44,13 @@
 
 > Your app should look better at this point. Ideally, the 4 input fields within the data-cc-digits DIV should all be on a single horzontal line.
 
-## Get The Bill : Challenge 2 of 4 
-> Write all Javascript strictly in ES6 syntax. This means use arrow functions instead of the function keyword. Declare variables and functions with `const` or `let`. Use `const` by default, and only use let if you are sure you need to re-assign values to the said variable. Use the [Selector API](https://mygradr.web.app/kugMbar7bNPd1cS3evDL/[https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors](https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors)) instead of the getElementBy... or getElementsBy... APIs. 
+## Get The Bill : Challenge 2 of 4
+
+> Write all Javascript strictly in ES6 syntax. This means use arrow functions instead of the function keyword. Declare variables and functions with `const` or `let`. Use `const` by default, and only use let if you are sure you need to re-assign values to the said variable. Use the [Selector API](<https://mygradr.web.app/kugMbar7bNPd1cS3evDL/[https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors](https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/Locating_DOM_elements_using_selectors)>) instead of the getElementBy... or getElementsBy... APIs.
 > Install the [JSON Viewer Chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en), open a new tab and go to this [API endpoint](https://randomapi.com/api/006b08a801d82d0c9824dcfdfdfa3b3c). You will be making HTTP requests to the API, so spend some time looking at the structure of the response data.
 
 ### Step 1
+
 - [x] Within the SCRIPT element and just after the `billHype` function, create an `appState` variable and assign it an empty Object literal. This variable will hold data for the app.
 
 - [x] Create a `formatAsMoney` function. It should take in an `amount` and a `buyerCountry` parameter. It will use these parameters to format the user's bill as a proper currency.
@@ -56,18 +60,19 @@
 - [x] Create a `uiCanInteract` function. It will be called to setup the UI, including adding event handlers to enable interactions with the app.
 
 - [x] Create a `displayCartTotal` function. It should expect a parameter and should use object de-structuring to obtain the `results` property of the given parameter. This function will be called with the data from an API call and it will display the total bill to be paid. [Read More on Object Destructing](https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/), [ES6 Destructuring: The Complete Guide](https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f), [Destructuring assignment
-](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+      ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ### Step 2
 
 - [x] Update the `fetchBill` function. It should then use the browser's `fetch` function to make a HTTP request to `apiEndpoint`. Using an arrow function in a `.then` call to the `fetch` function, return the response after converting it to JSON. Using another `.then` call to the first one, pass the JSON data to `displayCartTotal`. Make sure to handle errors that may occur, e.g by showing a warning message in the console.
-> Uselinks : 
+  > Uselinks :
+
 * [Google Web Developers Introduction to fetch](https://developers.google.com/web/updates/2015/03/introduction-to-fetch)
 * [MDN Fetch Api](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 - [x] Call the `fetchBill` function from inside the `startApp`. This should be the only code or function call within `startApp`.
 
-### Step 3 
+### Step 3
 
 - [x] In the body of the `displayCartTotal` function, de-structure the first item in the results array parameter into a data variable. Next, use object de-structuring to obtain the `itemsInCart` and `buyerCountry` properties from `data`. You might want to install the [JSONViewer Chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en), open a new tab and navigate to `https://randomapi.com/api/006b08a801d82d0c9824dcfdfdfa3b3c` to see the shape of the JSON data we are dealing with.
 
@@ -88,7 +93,9 @@
 > Run your app (click the play button) and see if the correct total bill is displayed in the UI with the right currency format. Next, we will allow input and interaction so that users can provide payment information.
 
 ## Handle Simple Validation : Challenge 3 of 4
-### Step 1 
+
+### Step 1
+
 - [x] Create a `flagIfInvalid` function just after `formatAsMoney` function. This function is used to mark an input entry as invalid (strike-though) nor not. It should take a `field` and `isValid` parameters. If `isValid` is true, it should remove the `is-invalid` class from `field`, otherwise it should add it to `field`.
 
 - [x] Just after `flagIfInvalid` function, create a `expiryDateFormatIsValid` function which takes a field parameter representing the card's expiry date `field`. It should return true if the field's value complies with the MM/YY format, otherwise it should return false.
@@ -97,17 +104,17 @@
 
 - [x] Now to the `validateCardHolderName` function. Recall that its placeholder already suggests the required format, which is Name Surname (2 names separated by space). Each name should be at least 3 characters long. It should use the `flagIfInvalid` function to mark the field as valid or not and then return true or false depending on if the validation requirements are met or not.
 
-## Stage 4 
+## Stage 4
+
 Validate Payment Details
 To have gotten here, you learnt a lot and demosntrated very good grasp of Web technologies. Respect!
-
-
 
 This is where it gets even more interesting. This challenge will push you, but we believe you have built the muscle for it. We hope you will find this last challenge inspiring, thought provoking, ambitious but solvable.
 
 When all four numbered buttons on the left of the screen get ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
 
 ### Step 1
+
 Create a smartCursor function with event, fieldIndex, and fields as parameters. If you already created a typeAhead function, rename it to smartCursor.
 
 Create a enableSmartTyping function. No parameters are required.
@@ -115,56 +122,65 @@ Create a enableSmartTyping function. No parameters are required.
 At the end of the uiCanInteract function, call the enableSmartTyping function.
 
 ### Step 2
+
 The enableSmartTyping function should collect all the input fields into an array and use .forEach to iterate over them with an inline arrow function that takes field, index, and fields as parameters.
 The goal is to iteratively set keyup and keydown event listeners for each field in the collection.
 
 On each field in the iteration with .forEach:
 
-add a keyup listener with an inline arrow function that takes in an event parameter. The function should call smartCursor passing it the event object as event, the index of the given field as index, and the collection of the input fields as fields.
+- [ ] add a keyup listener with an inline arrow function that takes in an event parameter. The function should call smartCursor passing it the event object as event, the index of the given field as index, and the collection of the input fields as fields.
 
-add a keydown listener with an inline arrow function that takes in an event parameter. The function should call smartInput, passing it the event object as event, and the index of the given field as index.
+- [ ] add a keydown listener with an inline arrow function that takes in an event parameter. The function should call smartInput, passing it the event object as event, and the index of the given field as index.
 
-Step 3
-You are going to implement a smart type-ahead system with smartCursor. The input fileds in the app all have designated sizes, e.g all the credit card number fields have their size set to 4. Once a user has typed up to the size of such a field, input focus should move to the next field. How sweet!
+## Step 3
+
+- [ ] You are going to implement a smart type-ahead system with smartCursor. The input fileds in the app all have designated sizes, e.g all the credit card number fields have their size set to 4. Once a user has typed up to the size of such a field, input focus should move to the next field. How sweet!
 
 As the user types into the input fields in the app, our keyup event listener is invoked and it calls smartCursor. Depending on what was set as the size attribute for the given field, the smartCursor function should determine if the last entry has been recorded and if so, it should give input focus to the next field in the sequence. We want to be smart about this, such that the last field is not trying to set focus on a non-existent field after it. Note that smartCursor has the following parameters :
 event - a keyup event that is fired as the user types into input fields
 fieldIndex - from the collection of input fields in the app, this is the zero-based index of the field trigeering the event.
 fields - the collection of input fields in the app
-Step 4
-You are going to implement a smarter and more secure credit card number input system with smartInput. Ideally, the user's credit card number should not be displayed in the open on the app. Just like password fields in forms, newly typed digits should only be displayed temporarily (for half a second) as the user types them. Only the last 4 digits are displayed perpertually. How sweet!
 
-As the user types into the card number input fields, our keydown event listener is invoked and it calls smartInput with these parameters: * event - a keydown event that is fired as the user types into input fields * fieldIndex - from the collection of input fields, this is the zero-based index of the field trigeering the event.
+## Step 4
+
+> You are going to implement a smarter and more secure credit card number input system with smartInput. Ideally, the user's credit card number should not be displayed in the open on the app. Just like password fields in forms, newly typed digits should only be displayed temporarily (for half a second) as the user types them. Only the last 4 digits are displayed perpertually. How sweet!
+
+- [ ] As the user types into the card number input fields, our keydown event listener is invoked and it calls smartInput with these parameters: _ event - a keydown event that is fired as the user types into input fields _ fieldIndex - from the collection of input fields, this is the zero-based index of the field trigeering the event.
 
 Implement smartInput as below :
 
-Invalid entries (non-integers) in the four card number fields should not be allowed to display at all. Hint: investigate preventDefault(). Every valid new entry should only be displayed for half a second, after which the character should be masked to conceal it from prying eyes. You can mask characters with #, $, or %.
+- [ ] Invalid entries (non-integers) in the four card number fields should not be allowed to display at all. Hint: investigate preventDefault(). Every valid new entry should only be displayed for half a second, after which the character should be masked to conceal it from prying eyes. You can mask characters with #, \$, or %.
 
-Since you will need the actual values the user entered (not the masked one in the UI), they should be saved as integer arrays in the right slot in the appState.cardDigits array. This means appState.cardDigits will be an array of arrays, corresponding to the values from the four card number fields. E.g appState.cardDigits[1] should be an array of the integers entered as value for the second card number field.
+- [ ] Since you will need the actual values the user entered (not the masked one in the UI), they should be saved as integer arrays in the right slot in the appState.cardDigits array. This means appState.cardDigits will be an array of arrays, corresponding to the values from the four card number fields. E.g appState.cardDigits[1] should be an array of the integers entered as value for the second card number field.
 
-Your smartInput will need to be smart enough to tell when it is handling the credit card fields vs the card holder's name field vs the expiry date field so that it can allow the correct types of input
+> Your smartInput will need to be smart enough to tell when it is handling the credit card fields vs the card holder's name field vs the expiry date field so that it can allow the correct types of input
 
-Step 5
-The detectCardType function displays a Visa or MasterCard logo depending on the card number entered by the user. For simplicity sake, our Visa card numbers begin with 4 and MasterCard numbers begin with 5. These are the only supported credit cards in the SmartPay platform
+## Step 5
 
-If detectCardType detects a Visa card, it should add is-visa to the data-credit-card DIV, else it should remove it and add is-mastercard if it detects a MasterCard. This gives the card a somewhat branded feel. To display the right card logo, it should set the source of the data-card-type IMAGE using the data URLs provided in the supportedCards object. Finally, it needs to return the is-visa or is-mastercard value depending on the type of card detected.
+> The detectCardType function displays a Visa or MasterCard logo depending on the card number entered by the user. For simplicity sake, our Visa card numbers begin with 4 and MasterCard numbers begin with 5. These are the only supported credit cards in the SmartPay platform
 
-Call detectCardType within smartInput. You can decide what the appropriate call location should be, but ideally you want this to be :
+- [ ] If detectCardType detects a Visa card, it should add is-visa to the data-credit-card DIV, else it should remove it and add is-mastercard if it detects a MasterCard. This gives the card a somewhat branded feel. To display the right card logo, it should set the source of the data-card-type IMAGE using the data URLs provided in the supportedCards object. Finally, it needs to return the is-visa or is-mastercard value depending on the type of card detected.
 
-after you are sure the new entry is valid
-only when the user is editing the first credit card input field
-within the same routine that is delayed for half a second to mask inputs
-Step 6
-You will be implementing the The Luhn Algorithm to validate 16-digit credit card numbers (See here for more details, but follow the instructions below for more clarity and simplicity.
+- [ ] Call detectCardType within smartInput. You can decide what the appropriate call location should be, but ideally you want this to be :
 
-Given a series of up to 16 digits, from the right to left, double every other digit starting with the second to last digit:
+> after you are sure the new entry is valid
+> only when the user is editing the first credit card input field
+> within the same routine that is delayed for half a second to mask inputs
+> Step 6
+> You will be implementing the The Luhn Algorithm to validate 16-digit credit card numbers (See here for more details, but follow the instructions below for more clarity and simplicity.
 
+- [ ] Given a series of up to 16 digits, from the right to left, double every other digit starting with the second to last digit:
+
+```javascript
 1714
 => [1*, 7, 1*, 4]
 => [2, 7, 2, 4]
-If a resulting doubled number is greater than 9, replace it with either the sum of its own digits, or 9 subtracted from it.
+```
 
-[8, 18*, 1] 
+> If a resulting doubled number is greater than 9, replace it with either the sum of its own digits, or 9 subtracted from it.
+
+```javascript
+[8, 18*, 1]
 => [8, (1+8), 1]
 OR
 => [8, (18-9), 1]
@@ -172,27 +188,31 @@ Resulting in:
 => [8, 9, 1]
 Sum all of the final digits:
 
-[8, 9, 1] 
-=> 8+9+1 
+[8, 9, 1]
+=> 8+9+1
 => 18
+```
+
 Finally, take that sum and divide it by 10. If there is no remainder, the original credit card number is valid, else it is not valid.
 
 Sample valid card numbers for your tests:
 
-4556372551434601
-4916337563926287
-4716361721613449
+```javascript
+4556372551434601;
+4916337563926287;
+4716361721613449;
 
-5130752529459529
-5250457226640843
-5330664490375584
-Create a validateWithLuhn function above the validateCardNumber function. It should take a digits parameter which will represent the credit card numbers as an array of integers. It should return true or false depending on if the digits represent a valid credit card number or not.
+5130752529459529;
+5250457226640843;
+5330664490375584;
+```
 
-Implement the validateCardNumber function to validate the card numbers entered by the user. It delegates to the validateWithLuhn function for the actual validation and returns the true or false value it gets from validateWithLuhn. Before returning the outcome of the validation, it should also add or remove the is-invalid class to the data-cc-digits DIV depending on the validity of the card number.
+- [ ]Create a validateWithLuhn function above the validateCardNumber function. It should take a digits parameter which will represent the credit card numbers as an array of integers. It should return true or false depending on if the digits represent a valid credit card number or not.
 
-Recall that validateWithLuhn expects to be called with an array of integers, but we have an array of integer arrays in appState.cardDigits. Use the new .flat() array function to ensure you are giving `` what it needs to do its job. See flat/flatMap
+- [ ] Implement the validateCardNumber function to validate the card numbers entered by the user. It delegates to the validateWithLuhn function for the actual validation and returns the true or false value it gets from validateWithLuhn. Before returning the outcome of the validation, it should also add or remove the is-invalid class to the data-cc-digits DIV depending on the validity of the card number.
 
-If you have followed closely and implemented the requirements up to ths point, your SmartPay app should be fully functional now. Try entering valid / invalid values into the input fields in the UI and click the Pay Now BUTTON. How smart is your SmartPay afterall?
+- [ ] Recall that validateWithLuhn expects to be called with an array of integers, but we have an array of integer arrays in appState.cardDigits. Use the new .flat() array function to ensure you are giving `` what it needs to do its job. See flat/flatMap
 
-If all four numbered buttons on the left of the screen are ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
+- [ ] If you have followed closely and implemented the requirements up to ths point, your SmartPay app should be fully functional now. Try entering valid / invalid values into the input fields in the UI and click the Pay Now BUTTON. How smart is your SmartPay afterall?
 
+> If all four numbered buttons on the left of the screen are ticked off with a check icon, then you have completed this assessment. You can take a screenshot or capture a <= 2 minute video of your working app and share on Twitter with these hashtags: #150DaysOfALC4 #MyGradr #GrowWithGoogle
